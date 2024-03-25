@@ -1,4 +1,4 @@
-# Project _NAME_
+# Project BOIDS
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 
@@ -6,9 +6,9 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ### Student Info
 
--   Name: _YOUR NAME_
--   Section: _##_
-
+-   Name: Reva Sathe
+-   Section: 02
+g
 ## Simulation Design
 
 _A brief explanation of your simulation._
