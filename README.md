@@ -11,7 +11,7 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 g
 ## Simulation Design
 
-_A brief explanation of your simulation._
+This simulation will be based off of a post-apocolyptic zombie-like comic I made during high school. There will be shadow-like creatures that hunt down the main character as he tries to avoid them. 
 
 ### Controls
 
