@@ -8,10 +8,10 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 -   Name: Reva Sathe
 -   Section: 02
-g
+
 ## Simulation Design
 
-This simulation will be based off of a post-apocolyptic zombie-like comic I made during high school. There will be shadow-like creatures that hunt down the main character as he tries to avoid them. 
+This simulation will be based off of a post-apocolyptic zombie-like comic I made during high school. There will be shadow-like creatures that hunt down the main character as he tries to avoid them and fight them. 
 
 ### Controls
 
@@ -19,11 +19,11 @@ This simulation will be based off of a post-apocolyptic zombie-like comic I made
     -   _Include how to preform each action ( keyboard, mouse, UI Input )_
     -   _Include what impact an action has in the simulation ( if is could be unclear )_
 
-## _Agent 1 Name_
+## Agent 1 - Leo
 
-_A brief explanation of this agent._
+A super powered human adept at fighting off Shades in a post-apocolyptic world.
 
-### _State 1 Name_
+### _State 1 Name_ 
 
 **Objective:** _A brief explanation of this state's objective._
 
@@ -55,9 +55,8 @@ _A brief explanation of this agent._
 
 - _List all the ways this agent can transition to this state_
 
-## _Agent 2 Name_
-
-_A brief explanation of this agent._
+## Agent 2 - Shades
+Shadowy creatures that resemble husks of humans that are out to attack any living being. Though they are vunerable to attacks themseleves much like zombies._
 
 ### _State 1 Name_
 
@@ -97,6 +96,10 @@ _A brief explanation of this agent._
 - _List out what you added to your game to make it different for you_
 - _If you will add more agents or states make sure to list here and add it to the documention above_
 - _If you will add your own assets make sure to list it here and add it to the Sources section
+  
+This project is entirely based off of a webcomic I created in highschool. 
+- I will be drawing all the art assets for sprites, backgrounds, and obstacles. 
+- I may potentially add in a third agent so that the world is more lively. 
 
 ## Known Issues
 
