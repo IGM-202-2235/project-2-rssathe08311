@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wanderer : Agent
+public class Humans : Agent
 {
     [SerializeField] float wanderTime = 1f;
     [SerializeField] float wanderRadius = 1f;

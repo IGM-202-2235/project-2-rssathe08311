@@ -11,7 +11,7 @@ public abstract class Agent : MonoBehaviour
 
 
     protected Vector3 totalForce = Vector3.zero;
-    float maxForce = 5f;
+    float maxForce = 10f;
 
     public AgentManager agentManager;
 
@@ -54,14 +54,14 @@ public abstract class Agent : MonoBehaviour
 
     public Vector3 Seek(Agent target)
     {
-        return Seek(target.transform.position);
+        return Seek(target.physicsObject.position);
     }
 
     
     public Vector3 Flee(Vector3 targetPos)
     {
         // Calculate desired velocity
-        Vector3 desiredVelocity =  transform.position - targetPos;
+        Vector3 desiredVelocity = physicsObject.position - targetPos;
 
         // Set desired = max speed
         desiredVelocity = desiredVelocity.normalized * physicsObject.maxSpeed;
@@ -86,7 +86,8 @@ public abstract class Agent : MonoBehaviour
 
     public Vector3 CalcFuturePosition(float futureTime)
     {
-        return transform.position + (physicsObject.Direction * futureTime);
+        return physicsObject.velocity * futureTime + transform.position;
+        //return transform.position + (physicsObject.Direction * futureTime);
     }
 
     public Vector3 Wander(float futureTime, float circleRadius, float range)
@@ -125,12 +126,13 @@ public abstract class Agent : MonoBehaviour
     {
         float totalCamHeight = (Camera.main.orthographicSize * 2f) / 2;
         float totalCamWidth = (totalCamHeight * Camera.main.aspect);
+        Vector3 futurePosition = CalcFuturePosition(1f);
 
-        if (position.y > totalCamHeight || (position.y < (totalCamHeight * -1)))
+        if (futurePosition.y > totalCamHeight || (futurePosition.y < (totalCamHeight * -1)))
         {
             return false;
         }
-        if (position.x > totalCamWidth || (position.x < (totalCamWidth * -1)))
+        if (futurePosition.x > totalCamWidth || (futurePosition.x < (totalCamWidth * -1)))
         {
             return false;
         }
@@ -140,7 +142,17 @@ public abstract class Agent : MonoBehaviour
 
     public Vector3 Seperate()
     {
-        return Vector3.zero;
+        Vector3 separateForce = Vector3.zero;
+
+        foreach(Agent agent in agentManager.agents)
+        {
+            float dist = Vector3.Distance(transform.position, agent.transform.position);
+            if(Mathf.Epsilon < dist)
+            {
+                separateForce += Flee(agent) * (1f/ dist);
+            }
+        }
+        return separateForce;
     }
 
     //alignment - seek the average location of the flock
