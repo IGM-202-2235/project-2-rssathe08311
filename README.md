@@ -95,7 +95,6 @@ Husk like creatures that are a result of the nuclear apocalypse, they are out to
 ## Make it Your Own
 This project is entirely based off of Unknown Tomorrow, a webcomic I created in highschool. 
 - I will be drawing all the art assets for sprites, backgrounds, and obstacles.
-    - 
 - I may potentially add in a third agent that will be another human type agent that is hunting down all other agent types including other humans. 
 
 ## Known Issues
