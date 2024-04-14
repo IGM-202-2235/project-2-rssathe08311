@@ -28,12 +28,9 @@ A super powered human adept at fighting off Shades in a post-apocolyptic world. 
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-   - _If behavior has input data list it here_
-   - _eg, Flee - nearest Agent2_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
-- Evade
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
+- Seperation - Humans will seperate from other humans
+- Evade - Humans will evade Shades and other hostile agents
    
 #### State Transistions
 
@@ -48,8 +45,9 @@ A super powered human adept at fighting off Shades in a post-apocolyptic world. 
 #### Steering Behaviors
 
 - _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
+- Seperation - Other non-aggressive humans
+- Pursue - More isolated Shades
    
 #### State Transistions
 
@@ -64,9 +62,9 @@ Husk like creatures that are a result of the nuclear apocalypse, they are out to
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
 - Seperation - _List all agents this state seperates from_
+- Seek - Humans when they are not attacking
    
 #### State Transistions
 
@@ -79,17 +77,15 @@ Husk like creatures that are a result of the nuclear apocalypse, they are out to
 #### Steering Behaviors
 
 - _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
 - Seperation - _List all agents this state seperates from_
+- Flee - Humans when they are attacking
    
 #### State Transistions
 
 - _List all the ways this agent can transition to this state_
 
 ## Sources
-
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
 -   The uncompleted webcomic this is based off of: [https://www.webtoons.com/en/canvas/unknown-tomorrow/list?title_no=379290](url)
 
 ## Make it Your Own
