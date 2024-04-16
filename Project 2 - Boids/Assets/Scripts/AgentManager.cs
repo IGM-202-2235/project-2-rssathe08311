@@ -9,6 +9,8 @@ public class AgentManager : MonoBehaviour
 
     public List<Agent> agents;
 
+    public List<Obstacle> obstacles;
+
     [SerializeField] int spawnCount = 100;
 
     Vector2 screenSize = Vector2.zero;

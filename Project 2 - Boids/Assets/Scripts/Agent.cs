@@ -9,6 +9,7 @@ public abstract class Agent : MonoBehaviour
     [SerializeField] public PhysicsObject physicsObject;
     float randAngle;
 
+    protected List<Vector3> foundObstaclePositions = new List<Vector3>();
 
     protected Vector3 totalForce = Vector3.zero;
     float maxForce = 10f;
@@ -118,6 +119,15 @@ public abstract class Agent : MonoBehaviour
         {
             steeringForce = Seek(Vector3.zero);
         }
+
+        return steeringForce;
+    }
+
+    public Vector3 AvoidObstacles()
+    {
+        Vector3 steeringForce = Vector3.zero;
+
+        foundObstaclePositions.Clear();
 
         return steeringForce;
     }
