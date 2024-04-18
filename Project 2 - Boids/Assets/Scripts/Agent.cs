@@ -129,6 +129,32 @@ public abstract class Agent : MonoBehaviour
 
         foundObstaclePositions.Clear();
 
+        //vector To obstacle 
+        Vector3 vToO = Vector3.zero;
+
+        float forwardDot, rightDot;
+
+        foreach(Obstacle ob in agentManager.obstacles)
+        {
+            vToO = ob.transform.position - transform.position;
+            
+
+            forwardDot = Vector3.Dot(physicsObject.Direction, vToO);
+            Debug.Log(forwardDot);
+
+
+            //Vector3 right = Vector3.Cross(physicsObject.Direction, Vector3.back);
+
+
+            if (forwardDot > 0f /* && (forwardDot < 5f - ob.radius)*/)
+            {
+                foundObstaclePositions.Add(ob.transform.position);
+            }
+
+
+            
+        }
+
         return steeringForce;
     }
 
@@ -166,4 +192,5 @@ public abstract class Agent : MonoBehaviour
     }
 
     //alignment - seek the average location of the flock
+
 }

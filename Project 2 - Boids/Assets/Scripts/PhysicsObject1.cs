@@ -76,14 +76,16 @@ public class PhysicsObject : MonoBehaviour
 
         //Grab current direction from velocity
         direction = velocity.normalized;
-        /*
+  
 
+        
         if (velocity != Vector3.zero)
         {
-            Quaternion spriteRotation = Quaternion.LookRotation(Vector3.forward, direction);
+            Quaternion spriteRotation = Quaternion.LookRotation(Vector3.back, direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, spriteRotation, 360f * Time.deltaTime);
         }
-        */
+        
+
 
         //Bounce();
 

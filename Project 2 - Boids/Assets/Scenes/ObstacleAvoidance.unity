@@ -925,9 +925,21 @@ PrefabInstance:
       value: Shade
       objectReference: {fileID: 0}
     - target: {fileID: 4691836567943138645, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691836567943138645, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
+      propertyPath: avoidTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691836567943138645, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
       propertyPath: agentManager
       value: 
       objectReference: {fileID: 2014632767}
+    - target: {fileID: 4691836567943138645, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
+      propertyPath: wanderRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9077985858502109799, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1214,7 +1226,7 @@ MonoBehaviour:
   - {fileID: 1088694361}
   - {fileID: 637551307}
   - {fileID: 717477287}
-  spawnCount: 10
+  spawnCount: 0
 --- !u!4 &2014632768
 Transform:
   m_ObjectHideFlags: 0

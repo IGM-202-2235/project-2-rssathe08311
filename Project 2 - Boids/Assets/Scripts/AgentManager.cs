@@ -15,6 +15,7 @@ public class AgentManager : MonoBehaviour
 
     Vector2 screenSize = Vector2.zero;
 
+
     public Vector2 ScreenSize
     {
         get { return screenSize; }
@@ -57,4 +58,6 @@ public class AgentManager : MonoBehaviour
 
         return randPos;
     }
+
+
 }
