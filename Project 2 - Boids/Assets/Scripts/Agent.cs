@@ -123,7 +123,7 @@ public abstract class Agent : MonoBehaviour
         return steeringForce;
     }
 
-    public Vector3 AvoidObstacles()
+    public Vector3 AvoidObstacles(float timeAhead)
     {
         Vector3 steeringForce = Vector3.zero;
 
@@ -140,15 +140,42 @@ public abstract class Agent : MonoBehaviour
             
 
             forwardDot = Vector3.Dot(physicsObject.Direction, vToO);
-            Debug.Log(forwardDot);
+            Vector3 futurePos = CalcFuturePosition(timeAhead);
 
+            float dist = Vector3.Distance(transform.position, futurePos) + physicsObject.radius;
+
+            //Debug.Log(forwardDot);
+            Vector3 right = Vector3.Cross(physicsObject.Direction, Vector3.back);
+            Debug.Log(right);
 
             //Vector3 right = Vector3.Cross(physicsObject.Direction, Vector3.back);
 
-
-            if (forwardDot > 0f /* && (forwardDot < 5f - ob.radius)*/)
+            //if the obstacle is in front of an agent 
+            if (forwardDot > 0f - ob.radius )
             {
-                foundObstaclePositions.Add(ob.transform.position);
+                //if it is within the detection box
+                if(forwardDot <= dist + ob.radius)
+                {
+                    //how far the obstacle is to the right or left of an object
+                    rightDot = Vector3.Dot(right, vToO);
+                    Debug.Log("rightDot " + rightDot);
+
+                    steeringForce = transform.right * (1 - forwardDot / dist) * physicsObject.maxSpeed;
+
+                    //if the obstacle is within the box of detection
+                    if(Mathf.Abs(rightDot) <= physicsObject.radius + ob.radius)
+                    {
+                        foundObstaclePositions.Add(ob.transform.position);
+
+                        //steer left
+                        if(rightDot > 0)
+                        {
+                            steeringForce = steeringForce * -1;
+                        }
+                    }
+                }
+
+                
             }
 
 

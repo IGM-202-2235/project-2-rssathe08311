@@ -940,6 +940,10 @@ PrefabInstance:
       propertyPath: wanderRadius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4691836567943138645, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
+      propertyPath: obstacleWeight
+      value: 1.3
+      objectReference: {fileID: 0}
     - target: {fileID: 9077985858502109799, guid: d66a21bbca0275a4c8f8a70eaece458e, type: 3}
       propertyPath: m_RootOrder
       value: 2

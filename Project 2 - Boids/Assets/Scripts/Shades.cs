@@ -21,7 +21,7 @@ public class Shades : Agent
 
         totalForce += Seperate() * seperateWeight;
         totalForce += StayInBounds() * boundsWeight;
-        totalForce += AvoidObstacles() * obstacleWeight;
+        totalForce += AvoidObstacles(avoidTime) * obstacleWeight;
         totalForce += Wander(wanderTime, wanderRadius, range);
 
 
