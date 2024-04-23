@@ -125,6 +125,7 @@ public abstract class Agent : MonoBehaviour
 
     public Vector3 AvoidObstacles(float timeAhead)
     {
+        physicsObject.position.z = 0;
         Vector3 steeringForce = Vector3.zero;
 
         foundObstaclePositions.Clear();
@@ -207,7 +208,7 @@ public abstract class Agent : MonoBehaviour
     {
         Vector3 separateForce = Vector3.zero;
 
-        foreach(Agent agent in agentManager.agents)
+        foreach(Agent agent in agentManager.shades)
         {
             float dist = Vector3.Distance(transform.position, agent.transform.position);
             if(Mathf.Epsilon < dist)
@@ -219,5 +220,49 @@ public abstract class Agent : MonoBehaviour
     }
 
     //alignment - seek the average location of the flock
+    public Vector3 Align(List<Agent> agents)
+    {
+        Vector3 alignForce = Vector3.zero;
+        Vector3 sum = Vector3.zero;
 
+        foreach(Agent agent in agents)
+        {
+            sum += agent.physicsObject.velocity;
+        }
+
+        sum /= agents.Count;
+
+        sum.Normalize();
+
+        alignForce = Seek(sum);
+
+        return alignForce;
+    }
+
+    public Vector3 Cohesion(List<Agent> agents)
+    {
+        physicsObject.position.z = 0;
+        Vector3 cohesionForce = Vector3.zero;
+        float neighborDist = 50;
+        Vector3 sum = Vector3.zero;
+        int count = 0;
+        foreach(Agent agent in agents)
+        {
+            float dist = Vector3.Distance(transform.position, agent.transform.position);
+            if((physicsObject != agent.physicsObject) && (dist < neighborDist))
+            {
+                sum += agent.transform.position;
+                count++;
+            }
+
+        }
+
+        if(count > 0)
+        {
+            sum /= count;
+            cohesionForce = sum;
+        }
+
+        return cohesionForce;
+    }
 }

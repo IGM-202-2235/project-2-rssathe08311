@@ -6,7 +6,10 @@ public class Humans : Agent
 {
     [SerializeField] float wanderTime = 1f;
     [SerializeField] float wanderRadius = 1f;
+    [SerializeField] float alignWeight = 1.5f;
     [SerializeField] float range = 3f;
+    [SerializeField] float seperateWeight = 1f;
+    [SerializeField] float cohesionWeight = 1f;
 
     [SerializeField] float boundsWeight = 2f;
 
@@ -17,6 +20,9 @@ public class Humans : Agent
 
 
         wanderForce += Wander(wanderTime, wanderRadius, range);
+        wanderForce += Align(agentManager.humans) * alignWeight;
+        wanderForce += Seperate() * seperateWeight;
+        wanderForce += Cohesion(agentManager.humans) * cohesionWeight;
         wanderForce += StayInBounds() * boundsWeight;
 
         return wanderForce;

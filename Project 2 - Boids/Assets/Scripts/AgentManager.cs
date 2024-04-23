@@ -7,7 +7,9 @@ public class AgentManager : MonoBehaviour
     [SerializeField]
     Agent agentPrefab;
 
-    public List<Agent> agents;
+    public List<Agent> humans;
+
+    public List<Agent> shades;
 
     public List<Obstacle> obstacles;
 
@@ -44,7 +46,7 @@ public class AgentManager : MonoBehaviour
 
             newAgent.agentManager = this;
 
-            agents.Add(newAgent);
+            shades.Add(newAgent);
         }
        
     }
