@@ -11,6 +11,8 @@ public class AgentManager : MonoBehaviour
 
     public List<Agent> shades;
 
+    public Agent aggressor;
+
     public List<Obstacle> obstacles;
 
     [SerializeField] int spawnCount = 100;

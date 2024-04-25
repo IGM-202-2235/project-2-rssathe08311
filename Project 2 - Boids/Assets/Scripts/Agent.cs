@@ -12,7 +12,7 @@ public abstract class Agent : MonoBehaviour
     protected List<Vector3> foundObstaclePositions = new List<Vector3>();
 
     protected Vector3 totalForce = Vector3.zero;
-    float maxForce = 10f;
+    [SerializeField] float maxForce = 10f;
 
     public AgentManager agentManager;
 
@@ -57,8 +57,13 @@ public abstract class Agent : MonoBehaviour
     {
         return Seek(target.physicsObject.position);
     }
+    public Vector3 Pursue(Agent target)
+    {
+        return Seek(target.CalcFuturePosition(2f));
+    }
 
-    
+
+
     public Vector3 Flee(Vector3 targetPos)
     {
         // Calculate desired velocity
@@ -82,7 +87,7 @@ public abstract class Agent : MonoBehaviour
     //the only difference between evade and flee is target.calcFuturePosition * time
     public Vector3 Evade(Agent target)
     {
-        return Flee(target.CalcFuturePosition(5f));
+        return Flee(target.CalcFuturePosition(2f));
     }
 
     public Vector3 CalcFuturePosition(float futureTime)

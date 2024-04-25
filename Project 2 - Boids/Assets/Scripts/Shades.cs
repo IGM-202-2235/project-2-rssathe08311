@@ -14,7 +14,6 @@ public class Shades : Agent
     [SerializeField] float boundsWeight = 2f;
 
 
-
     protected override Vector3 CalculateSteeringForces()
     {
         Vector3 totalForce = Vector3.zero;
@@ -23,7 +22,6 @@ public class Shades : Agent
         totalForce += StayInBounds() * boundsWeight;
         totalForce += AvoidObstacles(avoidTime) * obstacleWeight;
         totalForce += Wander(wanderTime, wanderRadius, range);
-
 
         return totalForce;
     }
