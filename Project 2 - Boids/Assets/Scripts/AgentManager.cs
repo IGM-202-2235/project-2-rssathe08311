@@ -78,16 +78,18 @@ public class AgentManager : MonoBehaviour
 
     public void UserShadeSpawn()
     {
-
+        Debug.Log("click");
+        
         for (int i = 0; i < 5; i++)
         {
 
-            Agent newShade = Agent.Instantiate(shadePrefab, PickRandomPosition(), Quaternion.identity);
+            Agent newAgent = Instantiate(shadePrefab, PickRandomPosition(), Quaternion.identity);
 
-            newShade.GetComponent<Agent>().agentManager = this;
+            newAgent.agentManager = this;
 
-            shades.Add(newShade.GetComponent<Agent>());
+            shades.Add(newAgent);
         }
+        Debug.Log(shades.Count);
     }
 
     Vector2 PickRandomPosition()

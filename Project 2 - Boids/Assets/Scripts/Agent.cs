@@ -121,7 +121,7 @@ public abstract class Agent : MonoBehaviour
     {
         Vector3 steeringForce = Vector3.zero;
 
-        Debug.Log((CheckIfInBounds(transform.position)));
+
         //Do stuff
         if(!CheckIfInBounds(transform.position))
         {
