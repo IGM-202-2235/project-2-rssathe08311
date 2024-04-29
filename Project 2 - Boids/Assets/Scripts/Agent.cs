@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,8 @@ public abstract class Agent : MonoBehaviour
 
     protected Vector3 totalForce = Vector3.zero;
     [SerializeField] float maxForce = 10f;
+
+    [SerializeField] protected float wanderTime = 1f;
 
     public AgentManager agentManager;
 
@@ -40,7 +43,7 @@ public abstract class Agent : MonoBehaviour
     public Vector3 Seek(Vector3 targetPos)
     {
         // Calculate desired velocity
-        Vector3 desiredVelocity = targetPos - transform.position;
+        Vector3 desiredVelocity = targetPos - physicsObject.position;
 
         // Set desired = max speed
         desiredVelocity = desiredVelocity.normalized * physicsObject.maxSpeed;
@@ -128,9 +131,67 @@ public abstract class Agent : MonoBehaviour
         return steeringForce;
     }
 
-    public Vector3 AvoidObstacles(float timeAhead)
+    public Vector3 AvoidObstacles(float futureTime)
+    {
+        Vector3 steeringForce = Vector3.zero;
+        foundObstaclePositions.Clear();
+
+
+        Vector3 vToO = Vector3.zero;
+        float forwardDot = 0, rightDot = 0;
+
+        foreach (Obstacle ob in agentManager.obstacles)
+        {
+            vToO = ob.transform.position - transform.position;
+
+            forwardDot = Vector3.Dot(physicsObject.Direction, vToO);
+            Vector3 futurePos = CalcFuturePosition(futureTime);
+
+            float dist = Vector3.Distance(transform.position, futurePos) + physicsObject.radius;
+
+            if (forwardDot >= -ob.radius)
+            {
+                // within the box in front of us
+                if (forwardDot <= dist + ob.radius)
+                {
+                    // how far left/right
+                    rightDot = Vector3.Dot(transform.right, vToO);
+
+                    Vector3 obstacleForce = transform.right * (1 - forwardDot / dist) * physicsObject.maxSpeed;
+
+                    // is the obstacle within the safe box width
+                    if (Mathf.Abs(rightDot) <= physicsObject.radius + ob.radius)
+                    {
+                        foundObstaclePositions.Add(ob.transform.position);
+
+                        // if left, steer right
+                        if (rightDot < 0)
+                        {
+                            steeringForce += obstacleForce;
+                        }
+
+                        // if right, steer left
+                        else
+                        {
+                            steeringForce -= obstacleForce;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+        return steeringForce;
+    }
+
+    /*
+    public Vector3 AvoidObstacles(float futureTime)
     {
         physicsObject.position.z = 0;
+
+
         Vector3 steeringForce = Vector3.zero;
 
         foundObstaclePositions.Clear();
@@ -146,7 +207,7 @@ public abstract class Agent : MonoBehaviour
             
 
             forwardDot = Vector3.Dot(physicsObject.Direction, vToO);
-            Vector3 futurePos = CalcFuturePosition(timeAhead);
+            Vector3 futurePos = CalcFuturePosition(futureTime);
 
             float dist = Vector3.Distance(transform.position, futurePos) + physicsObject.radius;
 
@@ -190,12 +251,13 @@ public abstract class Agent : MonoBehaviour
 
         return steeringForce;
     }
+    */
 
     protected bool CheckIfInBounds(Vector3 position)
     {
         float totalCamHeight = (Camera.main.orthographicSize * 2f) / 2;
         float totalCamWidth = (totalCamHeight * Camera.main.aspect);
-        Vector3 futurePosition = CalcFuturePosition(1f);
+        Vector3 futurePosition = CalcFuturePosition(wanderTime);
 
         if (futurePosition.y > totalCamHeight || (futurePosition.y < (totalCamHeight * -1)))
         {
@@ -209,11 +271,11 @@ public abstract class Agent : MonoBehaviour
         return true;
     }
 
-    public Vector3 Seperate()
+    public Vector3 Seperate(List<Agent> agents)
     {
         Vector3 separateForce = Vector3.zero;
 
-        foreach(Agent agent in agentManager.shades)
+        foreach(Agent agent in agents)
         {
             float dist = Vector3.Distance(transform.position, agent.transform.position);
             if(Mathf.Epsilon < dist)
@@ -232,14 +294,12 @@ public abstract class Agent : MonoBehaviour
 
         foreach(Agent agent in agents)
         {
-            sum += agent.physicsObject.velocity;
+            alignForce += agent.physicsObject.Direction;
         }
 
-        sum /= agents.Count;
+        alignForce = (alignForce.normalized) * physicsObject.maxSpeed;
 
-        sum.Normalize();
-
-        alignForce = Seek(sum);
+        alignForce -= physicsObject.velocity;
 
         return alignForce;
     }
@@ -247,26 +307,17 @@ public abstract class Agent : MonoBehaviour
     public Vector3 Cohesion(List<Agent> agents)
     {
         physicsObject.position.z = 0;
+
         Vector3 cohesionForce = Vector3.zero;
-        float neighborDist = 50;
-        Vector3 sum = Vector3.zero;
-        int count = 0;
-        foreach(Agent agent in agents)
-        {
-            float dist = Vector3.Distance(transform.position, agent.transform.position);
-            if((physicsObject != agent.physicsObject) && (dist < neighborDist))
-            {
-                sum += agent.transform.position;
-                count++;
-            }
 
+        foreach (Agent a in agents)
+        {
+            cohesionForce += a.physicsObject.position;
         }
 
-        if(count > 0)
-        {
-            sum /= count;
-            cohesionForce = sum;
-        }
+        cohesionForce /= agents.Count;
+
+        cohesionForce -= transform.position;
 
         return cohesionForce;
     }

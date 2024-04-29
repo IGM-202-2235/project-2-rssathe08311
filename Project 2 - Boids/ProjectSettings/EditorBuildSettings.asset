@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ObstacleAvoidance.unity
     guid: e0d14178bfda3bc42a9bdcecbce52755
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: a85de3e34fb9ce64abf0751f860e7282, type: 2}

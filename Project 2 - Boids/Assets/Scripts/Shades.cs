@@ -5,11 +5,14 @@ using UnityEngine;
 public class Shades : Agent
 {
     [SerializeField] float seperateWeight = 1f;
-    [SerializeField] float wanderTime = 1f;
     [SerializeField] float wanderRadius = 1f;
     [SerializeField] float range = 3f;
     [SerializeField] float obstacleWeight = 1f;
     [SerializeField] float avoidTime = 2f;
+    [SerializeField] float alignWeight = 1.5f;
+    [SerializeField] float cohesionWeight = 1f;
+    [SerializeField] float seekWeight = 1f;
+    [SerializeField] float fleeWeight = 1f;
 
     [SerializeField] float boundsWeight = 2f;
 
@@ -18,7 +21,20 @@ public class Shades : Agent
     {
         Vector3 totalForce = Vector3.zero;
 
-        totalForce += Seperate() * seperateWeight;
+        totalForce += Seperate(agentManager.shades) * seperateWeight;
+        totalForce += Align(agentManager.shades) * alignWeight; 
+        totalForce += Cohesion(agentManager.shades) * cohesionWeight;
+
+        foreach (Agent human in agentManager.humans)
+        {
+            if ((Vector3.Distance(transform.position, human.transform.position) + physicsObject.radius) < 5f)
+            {
+                totalForce += Flee(human) * fleeWeight;
+            }
+        }
+
+        totalForce += Seek(agentManager.aggressor) * seekWeight;
+
         totalForce += StayInBounds() * boundsWeight;
         totalForce += AvoidObstacles(avoidTime) * obstacleWeight;
         totalForce += Wander(wanderTime, wanderRadius, range);

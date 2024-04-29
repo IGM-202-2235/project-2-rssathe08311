@@ -5,10 +5,12 @@ using UnityEngine;
 public class Aggressor : Agent
 {
     [SerializeField] float seekWeight = 1f;
-    [SerializeField] float wanderTime = 1f;
     [SerializeField] float wanderRadius = 1f;
     [SerializeField] float boundsWeight = 2f;
+    [SerializeField] float evadeWeight = 1f;
 
+    [SerializeField] float avoidTime = 2f;
+    [SerializeField] float obstacleWeight = 1f;
 
     protected override Vector3 CalculateSteeringForces()
     {
@@ -16,7 +18,15 @@ public class Aggressor : Agent
 
 
         wanderForce += Seek(agentManager.humans[0]) * seekWeight;
+        foreach (Agent shade in agentManager.shades)
+        {
+            if ((Vector3.Distance(transform.position, shade.transform.position) + physicsObject.radius) < 5f)
+            {
+                wanderForce += Evade(shade) * evadeWeight;
+            }
+        }
         wanderForce += StayInBounds() * boundsWeight;
+        wanderForce += AvoidObstacles(avoidTime) * obstacleWeight;
 
         return wanderForce;
     }
