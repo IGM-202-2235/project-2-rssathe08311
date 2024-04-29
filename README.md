@@ -1,4 +1,4 @@
-# Project Unknown Tomorrow Chase
+# Project Unknown Tomorrow Survival
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 
@@ -14,7 +14,7 @@ This simulation will be based off of a post-apocolyptic zombie-like comic I made
 ### Controls
 
 -   The user will be able to spawn in more shades to add to the severity of the situation
-    -   Left clicking with the mouse on the game screen will spawn in more shades
+    -   Clicking the SPACE BAR will spawn in more shades 
 
 
 ## Agent 1 - Human
@@ -72,9 +72,9 @@ This project is entirely based off of Unknown Tomorrow, a webcomic I created in 
 
 ## Known Issues
 
-- I am having issues setting up Player Input, I am unable to get the right script and because of this cannot set it up correctly. Though I do have a spawning method written.
+- No known Issues
 
 ### Requirements not completed
 
-_If you did not complete a project requirement, notate that here_
+All requirements are completed
 
