@@ -1,7 +1,5 @@
 # Project Unknown Tomorrow Survival
 
-[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
-
 ### Student Info
 
 -   Name: Reva Sathe
@@ -65,6 +63,7 @@ A member of the military encampment that Leo escaped determined to get him back 
 ## Sources
 -   The uncompleted webcomic this is based off of: [https://www.webtoons.com/en/canvas/unknown-tomorrow/list?title_no=379290](url)
     - I am the co-author and artist
+    - Github doesn't like the link so it has to be copied and pasted into a browser
 
 ## Make it Your Own
 This project is entirely based off of Unknown Tomorrow, a webcomic I created in highschool. 
