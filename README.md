@@ -1,4 +1,4 @@
-# Project BOIDS
+# Project Unknown Tomorrow Chase
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 
@@ -13,89 +13,66 @@ This simulation will be based off of a post-apocolyptic zombie-like comic I made
 
 ### Controls
 
--   _List all of the actions the player can have in your simulation_
-    -   _Include how to preform each action ( keyboard, mouse, UI Input )_
-    -   _Include what impact an action has in the simulation ( if is could be unclear )_
+-   The user will be able to spawn in more shades to add to the severity of the situation
+    -   Left clicking with the mouse on the game screen will spawn in more shades
 
 
 ## Agent 1 - Human
 
-A super powered human adept at fighting off Shades in a post-apocolyptic world. Though if the human cannot fight back they must do their best to run away and survive.
-
-### State 1: Run/Survive 
-
-**Objective:** If the group of shades attacking a human are too big or the human cannot attack the human will try to evade hordes of Shades.
+A super powered human adept at fighting off Shades in a post-apocolyptic world. Though if the human cannot fight back they must do their best to run away and survive. There are three humans, all characters from my comic. The first being Leo the main character who is the most adept at fighting off shades but also is the target of the Agressor as he is a defector from a military camp. The second is Tessa, a rouge human fighting to survive all on her own in the post apocolyptic wasteland. The third and final one is Maiki, a young girl who was rescued by Leo after her father turned into a shade.
 
 #### Steering Behaviors
 
-- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object will be manuvered around
 - Seperation - Humans will seperate from other humans
-- Evade - Humans will evade Shades and other hostile agents
+- Evade - Humans will evade hostile aggressors
+- Wander - Roam around the screen if there is no major force acting upon the humans
+- Pursue - Humans will hunt down shades, due to their larger group number and proficiencies
+- Align - Humans will move in the same direction as other humans
+- Cohesion - Humans will move in similar ways as other humans
+- Stay In Bounds = Humans will stay within the bounds of the camera
    
-#### State Transistions
-
-- _List all the ways this agent can transition to this state_
-   - _eg, When this agent gets within range of Agent2_
-   - _eg, When this agent has reached target of State2_
-   
-### State 2: Fight
-
-**Objective:** If humans are able to attack they will actively fight back agains shades. 
-
-#### Steering Behaviors
-
-- _List all behaviors used by this state_
-- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
-- Seperation - Other non-aggressive humans
-- Pursue - More isolated Shades
-   
-#### State Transistions
-
-- _List all the ways this agent can transition to this state_
 
 ## Agent 2 - Shades
-Husk like creatures that are a result of the nuclear apocalypse, they are out to hunt any humans they come across unless they are being attacked. Which in that case they do their best to run away.  
-
-### State 1: Search/Pursue
-
-**Objective:** While in pursuit of humans Shades will look for them in groups in order to try and kill them. They will move around in a flock-like manner. 
+Husk like creatures that are a result of the nuclear apocalypse, they are out to hunt any isolated individuals, though against larger groups they turn tail and run. They are creatures of low intelligence and therefore are not able to predict movement well.  
 
 #### Steering Behaviors
 
-- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
-- Seperation - _List all agents this state seperates from_
-- Seek - Humans when they are not attacking
-   
-#### State Transistions
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object will be manuvered around
+- Seperation - Shades will seperate from other shades
+- Flee - Shades will evade humans
+- Wander - Roam around the screen if there is no major force acting upon the shades
+- Seek - Shades will hunt down aggressors, due to their isolated movement
+- Align - Shades will move in the same direction as other shades
+- Cohesion - Shades will move in similar ways as other shades
+- Stay In Bounds = Shades will stay within the bounds of the camera
 
-- _List all the ways this agent can transition to this state_
-   
-### State 2: Run
+## Agent 3 - Aggressor 
 
-**Objective:** When being attacked by humans the flock-like behavior will become less of a priority as the Shades attempt to escape.
+A member of the military encampment that Leo escaped determined to get him back and punish him for defecting. Though this organization is more sinester than they first appear. 
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacle Avoidance - Any sort of barricate or other physical non-moving object
-- Seperation - _List all agents this state seperates from_
-- Flee - Humans when they are attacking
-   
-#### State Transistions
-
-- _List all the ways this agent can transition to this state_
+- Obstacle Avoidance - Any sort of barricate or other physical non-moving object will be manuvered around
+- Seperation - Shades will seperate from other shades
+- Flee - Shades will evade humans
+- Wander - Roam around the screen if there is no major force acting upon the shades
+- Seek - Shades will hunt down aggressors, due to their isolated movement
+- Align - Shades will move in the same direction as other shades
+- Cohesion - Shades will move in similar ways as other shades
+- Stay In Bounds = Shades will stay within the bounds of the camera
 
 ## Sources
 -   The uncompleted webcomic this is based off of: [https://www.webtoons.com/en/canvas/unknown-tomorrow/list?title_no=379290](url)
+    - I am the co-author and artist
 
 ## Make it Your Own
 This project is entirely based off of Unknown Tomorrow, a webcomic I created in highschool. 
-- I will be drawing all the art assets for sprites, backgrounds, and obstacles.
-- I may potentially add in a third agent that will be another human type agent that is hunting down all other agent types including other humans. 
+- I drew all the art assets for sprites, backgrounds, and obstacles.
 
 ## Known Issues
 
-_List any errors, lack of error checking, or specific information that I need to know to run your program_
+- I am having issues setting up Player Input, I am unable to get the right script and because of this cannot set it up correctly. Though I do have a spawning method written.
 
 ### Requirements not completed
 
